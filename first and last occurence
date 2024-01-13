@@ -1,0 +1,52 @@
+// #define int long long
+int upperbound(vector<int> &arr, int x){
+    int n=arr.size();
+    int low=0;
+    int high=n-1;
+    int ans=n;
+    while(low<=high){
+        int mid=(high-low)/2+low;
+        if(arr[mid]>x){
+            ans=mid;
+            high=mid-1;
+        }
+        else{
+            low=mid+1;
+        }
+    }
+    return ans;
+}
+
+int lowerbound(vector<int> &arr, int x){
+    int n=arr.size();
+    int low=0;
+    int high=n-1;
+    int ans=n;
+    while(low<=high){
+        int mid=(high-low)/2+low;
+        if(arr[mid]>=x){
+            ans=mid;
+            high=mid-1;
+        }
+        else{
+            low=mid+1;
+        }
+    }
+    return ans;
+}
+class Solution {
+public:
+    vector<int> searchRange(vector<int> &nums, int target) {
+       int lb=lowerbound(nums, target);
+       vector<int> ans;
+       if(lb==nums.size() || nums[lb]!=target) {
+           ans.push_back(-1);
+            ans.push_back(-1);
+            return ans;
+       }
+       ans.push_back(lb);
+       ans.push_back(upperbound(nums,target)-1);
+          return ans;
+    }
+ 
+};
