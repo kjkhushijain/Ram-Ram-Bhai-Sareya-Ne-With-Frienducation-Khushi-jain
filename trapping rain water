@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int trap(vector<int>& height) {
+         int n=height.size();
+        int l=0,r=n-1;
+       int maxil=INT_MIN;
+       int maxir=INT_MIN;
+       int ans=0;
+        while(l<r){
+        maxil=max(maxil,height[l]);
+        maxir=max(maxir,height[r]);
+        if(maxil<maxir){
+            ans+=maxil-height[l++];
+        }
+        else{
+            ans+=maxir-height[r--];
+        }
+
+        }
+        return ans;
+    }
+};
