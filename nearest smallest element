@@ -1,0 +1,17 @@
+vector<int> Solution::prevSmaller(vector<int> &A) {
+    stack<int> s;
+    vector<int> len1(A.size());
+    for(int i = 0; i < A.size(); i++){
+        while(!s.empty() && s.top() >= A[i]){
+            s.pop();
+        }
+        if(s.empty()){
+            len1[i] = -1;
+        }
+        else{
+            len1[i] = s.top();
+        }
+        s.push(A[i]);
+    }
+    return len1;
+}
