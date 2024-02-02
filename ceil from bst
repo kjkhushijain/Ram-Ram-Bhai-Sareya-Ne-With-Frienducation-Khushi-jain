@@ -1,0 +1,12 @@
+int findCeilHelper(BinaryTreeNode<int> *root, int x){
+    if(root==NULL) return -1;
+    if(root->data==x) return root->data;
+    if(root->data<x) return findCeilHelper(root->right, x);
+    int value = findCeilHelper(root->left, x);
+    return (value >= x) ? value : root->data;
+}
+
+int findCeil(BinaryTreeNode<int> *node, int x){
+    // Call the renamed helper function
+    return findCeilHelper(node, x);
+}
