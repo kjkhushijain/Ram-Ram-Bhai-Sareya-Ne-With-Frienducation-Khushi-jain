@@ -1,0 +1,13 @@
+
+class Solution {
+public:
+    bool find(TreeNode* root, long maxi, long mini) {
+        if (root == nullptr) return true;
+        if (root->val >= maxi || root->val <= mini) return false;
+        return find(root->left, root->val, mini) && find(root->right, maxi, root->val);
+    }
+
+    bool isValidBST(TreeNode* root) {
+        return find(root, 1e9, -1e9);
+    }
+};
