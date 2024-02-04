@@ -1,0 +1,21 @@
+class Solution {
+public:
+
+    int f(int ind, vector<int> &dp){
+        if(sqrt(ind)-floor(sqrt(ind))==0) return 1;
+        if(ind<=3) return ind;
+        if(dp[ind]!=-1) return dp[ind];
+        int res=ind;
+
+        for(int i=1;i<=ind;i++){
+            int temp=i*i;
+            if(temp>ind) break;
+         res=min(res,1+f(ind-temp,dp));
+        }
+        return dp[ind]=res;
+    }
+    int numSquares(int n) {
+        vector<int> dp(n+1,-1);
+        return f(n,dp);
+    }
+};
